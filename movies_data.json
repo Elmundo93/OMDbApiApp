@@ -1,0 +1,14 @@
+{
+    "movies": {
+        "The Lord of the Rings: The Fellowship of the Ring": {
+            "year": 2001,
+            "rating": 8.9,
+            "poster": "https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_SX300.jpg"
+        },
+        "No Mans Land": {
+            "year": 2020,
+            "rating": 5.1,
+            "poster": "https://m.media-amazon.com/images/M/MV5BNDJhOWZjODUtZjI4Yi00YTc1LWE1Y2YtYjY4N2Y1ZThjNGQ3XkEyXkFqcGc@._V1_SX300.jpg"
+        }
+    }
+}
