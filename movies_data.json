@@ -9,6 +9,11 @@
             "year": 2020,
             "rating": 5.1,
             "poster": "https://m.media-amazon.com/images/M/MV5BNDJhOWZjODUtZjI4Yi00YTc1LWE1Y2YtYjY4N2Y1ZThjNGQ3XkEyXkFqcGc@._V1_SX300.jpg"
+        },
+        "LOL": {
+            "year": 2012,
+            "rating": 4.4,
+            "poster": "https://m.media-amazon.com/images/M/MV5BMTA0MjI5ODA3MjReQTJeQWpwZ15BbWU3MDI1NTE3Njc@._V1_SX300.jpg"
         }
     }
 }

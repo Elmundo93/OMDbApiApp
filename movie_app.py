@@ -1,7 +1,11 @@
-# movie_app.py
+import os
 import random
 import statistics
 import requests
+from dotenv import load_dotenv
+
+# Load environment variables from .env file.
+load_dotenv()
 
 class MovieApp:
     def __init__(self, storage):
@@ -9,9 +13,12 @@ class MovieApp:
         Initialize the MovieApp with a storage that implements IStorage.
         """
         self._storage = storage
-        self.api_key = "e022faed"  # Replace with your OMDb API key.
-        self.template_file = "_static/index_template.html"  # Path to your HTML template.
-        self.website_file = "index_template.html"  # Output website file.
+        # Get the API key from environment variables
+        self.api_key = os.environ.get("OMDB_API_KEY")
+        if not self.api_key:
+            raise ValueError("OMDB_API_KEY not found in environment variables.")
+        self.template_file = "_static/index_template.html"
+        self.website_file = "index_template.html"
 
     def _command_list_movies(self):
         movies = self._storage.list_movies()

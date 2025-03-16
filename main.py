@@ -1,4 +1,4 @@
-# main.py
+
 from storage_json import StorageJson
 from movie_app import MovieApp
 
