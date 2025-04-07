@@ -1,0 +1,61 @@
+
+{
+    "movies": {
+        "The Shawshank Redemption": {
+            "rating": 9.3,
+            "year": 1994
+        },
+        "The Godfather": {
+            "rating": 9.2,
+            "year": 1972
+        },
+        "The Dark Knight": {
+            "rating": 9.0,
+            "year": 2008
+        },
+        "Pulp Fiction": {
+            "rating": 8.9,
+            "year": 1994
+        },
+        "Forrest Gump": {
+            "rating": 8.8,
+            "year": 1994
+        },
+        "Inception": {
+            "rating": 8.7,
+            "year": 2010
+        },
+        "The Matrix": {
+            "rating": 8.7,
+            "year": 1999
+        },
+        "Se7en": {
+            "rating": 8.6,
+            "year": 1995
+        },
+        "Interstellar": {
+            "rating": 8.6,
+            "year": 2014
+        },
+        "Parasite": {
+            "rating": 8.5,
+            "year": 2019
+        },
+        "The Silence of the Lambs": {
+            "rating": 8.6,
+            "year": 1991
+        },
+        "Saving Private Ryan": {
+            "rating": 8.6,
+            "year": 1998
+        },
+        "The Green Mile": {
+            "rating": 8.6,
+            "year": 1999
+        }
+    },
+    "honululu": {
+        "rating": 5.0,
+        "year": 19999
+    }
+}
