@@ -12,11 +12,9 @@ class FakeResponse:
     def json(self):
         return self._json_data
 
-
 # ---------------------------
 # Fixtures for Storage and App
 # ---------------------------
-
 @pytest.fixture
 def temp_storage_file(tmp_path):
     # Create a temporary file for the JSON storage.
@@ -45,11 +43,9 @@ def movie_app(storage, tmp_path):
     app.website_file = str(website_file)
     return app
 
-
 # ---------------------------
 # Tests for StorageJson
 # ---------------------------
-
 def test_add_movie(storage):
     storage.add_movie("Test Movie", 2000, 7.5, "http://example.com/test.jpg")
     movies = storage.list_movies()
@@ -57,7 +53,6 @@ def test_add_movie(storage):
     assert movies["Test Movie"]["year"] == 2000
     assert movies["Test Movie"]["rating"] == 7.5
     assert movies["Test Movie"]["poster"] == "http://example.com/test.jpg"
-    # Adding the same movie again should raise a ValueError.
     with pytest.raises(ValueError):
         storage.add_movie("Test Movie", 2000, 7.5, "http://example.com/test.jpg")
 
@@ -66,7 +61,6 @@ def test_delete_movie(storage):
     storage.delete_movie("Test Movie")
     movies = storage.list_movies()
     assert "Test Movie" not in movies
-    # Deleting a non-existent movie should raise an error.
     with pytest.raises(ValueError):
         storage.delete_movie("Non-Existing")
 
@@ -75,17 +69,13 @@ def test_update_movie(storage):
     storage.update_movie("Test Movie", 8.0)
     movies = storage.list_movies()
     assert movies["Test Movie"]["rating"] == 8.0
-    # Updating a non-existent movie should raise an error.
     with pytest.raises(ValueError):
         storage.update_movie("Non-Existing", 8.0)
-
 
 # ---------------------------
 # Tests for MovieApp Commands
 # ---------------------------
-
 def test_command_add_movie_success(movie_app, storage, monkeypatch):
-    # Simulate a successful OMDb API response.
     fake_api_response = {
         "Title": "Inception",
         "Year": "2010",
@@ -96,11 +86,9 @@ def test_command_add_movie_success(movie_app, storage, monkeypatch):
     def fake_get(url):
         return FakeResponse(fake_api_response)
     monkeypatch.setattr("movie_app.requests.get", fake_get)
-    # Simulate user input: movie title and a press-enter.
     inputs = iter(["Inception", ""])
     monkeypatch.setattr("builtins.input", lambda prompt="": next(inputs))
     movie_app._command_add_movie()
-
     movies = storage.list_movies()
     assert "Inception" in movies
     assert movies["Inception"]["year"] == 2010
@@ -108,7 +96,6 @@ def test_command_add_movie_success(movie_app, storage, monkeypatch):
     assert movies["Inception"]["poster"] == "https://example.com/inception.jpg"
 
 def test_command_add_movie_failure(movie_app, storage, monkeypatch):
-    # Simulate a failed OMDb API response.
     fake_api_response = {
         "Response": "False",
         "Error": "Movie not found!"
@@ -119,7 +106,6 @@ def test_command_add_movie_failure(movie_app, storage, monkeypatch):
     inputs = iter(["Nonexistent", ""])
     monkeypatch.setattr("builtins.input", lambda prompt="": next(inputs))
     movie_app._command_add_movie()
-
     movies = storage.list_movies()
     assert "Nonexistent" not in movies
 
@@ -174,7 +160,6 @@ def test_command_sorted_by_rating_empty(movie_app, monkeypatch, capsys):
     monkeypatch.setattr("builtins.input", lambda prompt="": next(inputs))
     movie_app._command_sorted_by_rating()
     captured = capsys.readouterr().out
-    # The header should be printed even if no movies exist.
     assert "Movies Sorted by Rating:" in captured
 
 def test_command_sorted_by_rating(movie_app, storage, monkeypatch, capsys):
@@ -184,7 +169,6 @@ def test_command_sorted_by_rating(movie_app, storage, monkeypatch, capsys):
     monkeypatch.setattr("builtins.input", lambda prompt="": next(inputs))
     movie_app._command_sorted_by_rating()
     captured = capsys.readouterr().out
-    # Check that the movie with the higher rating is printed first.
     assert captured.find("Movie B") < captured.find("Movie A")
 
 def test_command_stats_empty(movie_app, monkeypatch, capsys):
@@ -207,7 +191,6 @@ def test_command_stats(movie_app, storage, monkeypatch, capsys):
     assert "Worst movie:" in captured
 
 def test_command_generate_website(movie_app, storage, monkeypatch):
-    # The template file already exists (via the fixture). Add a movie to generate the grid.
     storage.add_movie("Test Movie", 2000, 7.5, "http://example.com/test.jpg")
     inputs = iter([""])
     monkeypatch.setattr("builtins.input", lambda prompt="": next(inputs))

@@ -1,4 +1,3 @@
-# storage_json.py
 import json
 import os
 from istorage import IStorage

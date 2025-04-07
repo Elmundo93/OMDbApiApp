@@ -1,4 +1,3 @@
-# storage_csv.py
 import csv
 import os
 from istorage import IStorage
